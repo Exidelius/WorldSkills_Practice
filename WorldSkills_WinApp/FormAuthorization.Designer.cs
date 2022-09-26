@@ -47,7 +47,8 @@
             // 
             this.textBoxLogin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxLogin.Location = new System.Drawing.Point(3, 183);
+            this.textBoxLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxLogin.Location = new System.Drawing.Point(3, 218);
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(194, 22);
             this.textBoxLogin.TabIndex = 0;
@@ -55,7 +56,7 @@
             // checkBoxKeep
             // 
             this.checkBoxKeep.AutoSize = true;
-            this.checkBoxKeep.Location = new System.Drawing.Point(3, 295);
+            this.checkBoxKeep.Location = new System.Drawing.Point(3, 330);
             this.checkBoxKeep.Name = "checkBoxKeep";
             this.checkBoxKeep.Size = new System.Drawing.Size(150, 20);
             this.checkBoxKeep.TabIndex = 2;
@@ -66,19 +67,22 @@
             // 
             this.buttonAuthorize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAuthorize.Location = new System.Drawing.Point(3, 341);
+            this.buttonAuthorize.BackColor = System.Drawing.SystemColors.Highlight;
+            this.buttonAuthorize.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonAuthorize.Location = new System.Drawing.Point(3, 376);
             this.buttonAuthorize.Name = "buttonAuthorize";
             this.buttonAuthorize.Size = new System.Drawing.Size(194, 39);
             this.buttonAuthorize.TabIndex = 3;
             this.buttonAuthorize.Text = "Войти";
-            this.buttonAuthorize.UseVisualStyleBackColor = true;
+            this.buttonAuthorize.UseVisualStyleBackColor = false;
             this.buttonAuthorize.Click += new System.EventHandler(this.buttonAuthorize_Click);
             // 
             // textBoxPassword
             // 
             this.textBoxPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxPassword.Location = new System.Drawing.Point(3, 247);
+            this.textBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxPassword.Location = new System.Drawing.Point(3, 282);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.Size = new System.Drawing.Size(194, 22);
@@ -98,7 +102,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(383, 534);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(322, 534);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // tableLayoutPanel2
@@ -115,10 +119,10 @@
             this.tableLayoutPanel2.Controls.Add(this.checkBoxKeep, 0, 9);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.label2, 0, 6);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(91, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(60, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 13;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -130,7 +134,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(200, 528);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
@@ -140,7 +144,7 @@
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 23);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 58);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(194, 118);
             this.pictureBox1.TabIndex = 4;
@@ -149,7 +153,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 164);
+            this.label1.Location = new System.Drawing.Point(3, 199);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 16);
             this.label1.TabIndex = 5;
@@ -158,7 +162,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 228);
+            this.label2.Location = new System.Drawing.Point(3, 263);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 16);
             this.label2.TabIndex = 6;
@@ -168,7 +172,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 540);
+            this.ClientSize = new System.Drawing.Size(323, 540);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "FormAuthorization";
             this.Text = "Авторизация";

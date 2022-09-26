@@ -8,8 +8,11 @@ namespace WorldSkills_WinApp
     public partial class FormOrganizationMenu : Form
     {
         private User currentUser;
+        private Competition currentCompetition;
 
-        private int selectedRowIndex;
+        UserControlManager userControl;
+
+        private Dictionary<string, int> competitions;
 
         public FormOrganizationMenu()
         {
@@ -19,49 +22,101 @@ namespace WorldSkills_WinApp
         public FormOrganizationMenu(User user)
         {
             InitializeComponent();
-            currentUser = user;  
+            currentUser = user;
         }
 
         private void FormOrganizationMenu_Load(object sender, EventArgs e)
         {
             labelGreetings.Text = String.Concat(ChooseGreetings(), currentUser.GetFIO());
-            UpdateCompetitions();
 
-            selectedRowIndex = dataGridViewCompetitions.RowCount + 1;
+            competitions = GetCompetitionsNames();
+
+            UpdateCompetitions();
+        }
+
+        private Dictionary<string, int> GetCompetitionsNames()
+        {
+            Dictionary<string, int> result = new Dictionary<string, int>();
+
+            foreach (Tuple<int, string> entitie in DBWorkers.CompetitionsController.GetIDName())
+            {
+                result.Add(entitie.Item2, entitie.Item1);
+            }
+
+            return result;
         }
 
         private void UpdateCompetitions()
         {
-            List<Competition> competitions = DBControllers.DBWorker.GetCompetitions();
-            if (competitions != null)
+            foreach (string item in competitions.Keys)
             {
-                dataGridViewCompetitions.Rows.Clear();
-                for (int i = 0; i < competitions.Count; i++)
-                {
-                    dataGridViewCompetitions.Rows.Add(competitions[i].GetAsStringArray());
-                }
-                dataGridViewCompetitions.Update();
+                comboBoxCompetitions.Items.Add(item);
             }
         }
 
         private string ChooseGreetings()
         {
-            // TODO доделать время суток
-            return "Привет, ";
+            DateTime currentTime = DateTime.Now;
+
+            if (currentTime.Hour < 6)
+                return "Доброй ночи, ";
+            if (currentTime.Hour < 12)
+                return "Доброе утро, ";
+            if (currentTime.Hour < 18)
+                return "Добрый день, ";
+            return "Добрый вечер, ";
         }
 
-        private void dataGridViewCompetitions_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        private void comboBoxCompetitions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (dataGridViewCompetitions.Rows.Count == 0)
+            currentCompetition = DBWorkers.CompetitionsController.Get(competitions[(string)comboBoxCompetitions.SelectedItem]);
+
+            // TODO Попытаться сделать апдейт. Абстрактный класс работает, но компоненты не хотят открывать с ним дизайнер.
+
+
+            if (userControl != null)
+                ((IUserControl)userControl).Update(currentCompetition);
+        }
+
+        private void buttonCompetition_Click(object sender, EventArgs e)
+        {
+            if (comboBoxCompetitions.SelectedIndex == -1)
                 return;
 
-            if (selectedRowIndex < dataGridViewCompetitions.RowCount &&
-                dataGridViewCompetitions.SelectedCells[0].RowIndex != selectedRowIndex)
-                dataGridViewCompetitions.Rows[selectedRowIndex].Selected = false;
+            ChangeControl(new UserControlCompetitionInformation(currentCompetition));
+        }
 
-            selectedRowIndex = dataGridViewCompetitions.SelectedCells[0].RowIndex; 
+        private void ChangeControl(UserControlManager newUserControl)
+        {
+            if (userControl != null)
+                userControl.DisposeControl();
 
-            dataGridViewCompetitions.Rows[selectedRowIndex].Selected = true;
+            userControl = newUserControl;
+
+            userControl.EnableControl(tableLayoutPanelDeployment);
+        }
+
+        private void buttonEditCompetition_Click(object sender, EventArgs e)
+        {
+            if (comboBoxCompetitions.SelectedIndex == -1)
+            {
+                ChangeControl(new UserControlFullCompetitionInformation());
+                return;
+            }
+
+            ChangeControl(new UserControlFullCompetitionInformation(currentCompetition));
+        }
+
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
+            OpenNewForm();
+        }
+
+        private void OpenNewForm()
+        {
+            // TODO возможно доделать выбор формы для разных степеней доступа
+
+            Program.OpenForm(new FormAuthorization());
         }
     }
 }

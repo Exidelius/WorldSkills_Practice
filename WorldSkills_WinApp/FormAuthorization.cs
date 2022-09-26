@@ -22,7 +22,7 @@ namespace WorldSkills_WinApp
                 Properties.Settings.Default.Save();
             }
 
-            DBEntities.User user = DBControllers.DBWorker.GetUser(login, password);
+            DBEntities.User user = DBWorkers.UsersController.Get(login, password);
 
             if (user.IsNull())
             {

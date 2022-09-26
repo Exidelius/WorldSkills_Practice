@@ -1,14 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
 using System.Data;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace WorldSkills_WinApp.DBControllers
+namespace WorldSkills_WinApp.DBWorkers
 {
-    class DBConnector
+    public static class DBController
     {
         #region Поля
         private static string ServerName { get { return "localhost"; } }
@@ -20,11 +15,11 @@ namespace WorldSkills_WinApp.DBControllers
 
         private static string _connectionString = $"server={ServerName};port={ServerPort};user={User};password={Password};database={DataBaseName}";
 
-        private MySqlConnection Connection = new MySqlConnection(_connectionString);
+        private static MySqlConnection Connection = new MySqlConnection(_connectionString);
         #endregion
 
         #region Методы
-        public void OpenConnection()
+        public static void OpenConnection()
         {
             if (Connection.State == System.Data.ConnectionState.Closed)
             {
@@ -32,7 +27,7 @@ namespace WorldSkills_WinApp.DBControllers
             }
         }
 
-        public void CloseConnection()
+        public static void CloseConnection()
         {
             if (Connection.State == System.Data.ConnectionState.Open)
             {
@@ -40,9 +35,29 @@ namespace WorldSkills_WinApp.DBControllers
             }
         }
 
-        public MySqlConnection GetConnection()
+        public static MySqlConnection GetConnection()
         {
             return Connection;
+        }
+
+        public static DataTable GetFromDB(string _command)
+        {
+            DataTable table = new DataTable();
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+
+            MySqlCommand command = new MySqlCommand(_command);
+
+            OpenConnection();
+            adapter.SelectCommand = command;
+            command.Connection = GetConnection();
+            adapter.Fill(table);
+            CloseConnection();
+
+
+            if (table.Rows.Count == 0) return null;
+
+            return table;
         }
         #endregion
     }
