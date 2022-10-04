@@ -14,6 +14,8 @@ namespace WorldSkills_WinApp.DBEntities
         public int Region { get; private set; }
         public int Place { get; private set; }
         public int Competition { get; private set; }
+        public bool IsActive { get; private set; }
+        
 
         //public User(int id, string fIO, string gender, DateTime dateBirthday, int role, int skill, int region, int place, int competition)
         //{
@@ -54,6 +56,8 @@ namespace WorldSkills_WinApp.DBEntities
             Competition = 0;
             if (int.TryParse(rowUser[8].ToString(), out int competition))
                 Competition = competition;
+
+            IsActive = Convert.ToBoolean(rowUser[9]);
         }
         public bool IsNull() => FIO == null;
 

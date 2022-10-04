@@ -16,7 +16,8 @@ namespace WorldSkills_WinApp.DBWorkers
 `users`.`skill`,
 `users`.`region`,
 `users`.`place`,
-`users`.`competition`";
+`users`.`competition`,
+`users`.`is_active`";
 
         //    Id = id;
         //    FIO = fIO;
@@ -76,14 +77,14 @@ WHERE
             return result;
         }
 
-        public static User[] Get(Competition competition, int role, int skill)
+        public static User[] Get(Competition competition, int role, int skill, bool isUnaccepted)
         {
             string command = $@"
 SELECT 
 {SELECT_ALL}
 FROM `users` 
 WHERE 
-`users`.`competition` = '{competition.Id}'{BuildRoles(role)}{BuildSkillS(skill)};";
+`users`.`competition` = '{competition.Id}'{BuildRoles(role)}{BuildSkillS(skill)}{BuildActive(isUnaccepted)};";
 
             DataTable tableUser = DBController.GetFromDB(command);
             if (tableUser == null || tableUser.Rows.Count == 0)
@@ -227,6 +228,16 @@ AND
             return $@"
 AND
 `users`.`skill`='{skill}'";
+        }
+
+        private static string BuildActive(bool isUnaccepted)
+        {
+            if (!isUnaccepted)
+                return "";
+
+            return $@"
+AND
+`users`.`is_active`='{0}'";
         }
     }
 }

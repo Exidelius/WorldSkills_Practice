@@ -215,6 +215,7 @@
             this.checkBoxIsUnaccepted.TabIndex = 4;
             this.checkBoxIsUnaccepted.Text = "Показать только неподтверждённых";
             this.checkBoxIsUnaccepted.UseVisualStyleBackColor = true;
+            this.checkBoxIsUnaccepted.CheckedChanged += new System.EventHandler(this.checkBoxIsUnaccepted_CheckedChanged);
             // 
             // UserControlViewParticipants
             // 

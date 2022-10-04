@@ -52,7 +52,7 @@ namespace WorldSkills_WinApp.UserControls
             int id_skill = SkillsController.GetId((string)comboBoxSkill.SelectedItem);
 
             List<User> users = new List<User>();
-            users.AddRange(UsersController.Get(currentCompetition, id_role, id_skill));
+            users.AddRange(UsersController.Get(currentCompetition, id_role, id_skill, checkBoxIsUnaccepted.Checked));
             for (int i = 0; i < users.Count; i++)
             {
                 AddRow(GetDataGridUserParams(users[i]));
@@ -65,7 +65,7 @@ namespace WorldSkills_WinApp.UserControls
             string userFIO = user.FIO.ToString();
             string userSkill = SkillsController.GetTitle(user.Skill);
             string userRole = RolesController.GetTitle(user.Role);
-            string userIsAccepted = "Статус согласования отсутствует в базе данных"; ;
+            string userIsAccepted = user.IsActive == true ? "Согласован" : "Ожидает согласования";
 
             return new Tuple<string, string, string, string, string>(userID, userFIO, userSkill, userRole, userIsAccepted);
         }
@@ -81,6 +81,11 @@ namespace WorldSkills_WinApp.UserControls
         }
 
         private void comboBoxRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RetrieveData();
+        }
+
+        private void checkBoxIsUnaccepted_CheckedChanged(object sender, EventArgs e)
         {
             RetrieveData();
         }
