@@ -5,15 +5,15 @@ namespace WorldSkills_WinApp.DBEntities
 {
     public class User
     {
-        private int Id { get; set; }
-        private string FIO { get; set; }
-        private string Gender { get; set; }
-        private DateTime DateBirthday { get; set; }
-        private int Role { get; set; }
-        private int Skill { get; set; }
-        private int Region { get; set;}
-        private int Place { get; set;}
-        private int Competition { get; set;}
+        public int Id { get; private set; }
+        public string FIO { get; private set; }
+        public string Gender { get; private set; }
+        public DateTime DateBirthday { get; private set; }
+        public int Role { get; private set; }
+        public int Skill { get; private set; }
+        public int Region { get; private set; }
+        public int Place { get; private set; }
+        public int Competition { get; private set; }
 
         //public User(int id, string fIO, string gender, DateTime dateBirthday, int role, int skill, int region, int place, int competition)
         //{
@@ -33,16 +33,29 @@ namespace WorldSkills_WinApp.DBEntities
             Id = (int)rowUser[0];
             FIO = (string)rowUser[1];
             Gender = (string)rowUser[2];
-            DateBirthday = (DateTime)rowUser[3];
-            Role = (int)rowUser[4];
-            Skill = (int)rowUser[5];
-            Region = (int)rowUser[6];
-            Place = (int)rowUser[7];
-            Competition = (int)rowUser[8];
-        }
-        public bool IsNull() => GetFIO() == null;
+            DateBirthday = DateTime.ParseExact(rowUser[3].ToString(), "dd.MM.yyyy s:mm:HH", null);
+            
+            Role = 0;
+            if (int.TryParse(rowUser[4].ToString(), out int role))
+                Role = role;
 
-        public string GetFIO() => FIO;
+            Skill = 0;
+            if (int.TryParse(rowUser[5].ToString(), out int skill))
+                Skill = skill;
+
+            Region = 0;
+            if (int.TryParse(rowUser[6].ToString(), out int region))
+                Region = region;
+
+            Place = 0;
+            if (int.TryParse(rowUser[7].ToString(), out int place))
+                Place = place;
+
+            Competition = 0;
+            if (int.TryParse(rowUser[8].ToString(), out int competition))
+                Competition = competition;
+        }
+        public bool IsNull() => FIO == null;
 
     }
 }

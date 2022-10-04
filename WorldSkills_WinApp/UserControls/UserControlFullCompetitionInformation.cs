@@ -4,12 +4,14 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using WorldSkills_WinApp.DBEntities;
+using WorldSkills_WinApp.UIScripts;
 
 namespace WorldSkills_WinApp
 {
     public partial class UserControlFullCompetitionInformation : UserControlManager, IUserControl
     {
         private Competition currentCompetition;
+        private User currentUser;
 
         private List<ComboBox> skillsComboBox;
 
@@ -18,14 +20,16 @@ namespace WorldSkills_WinApp
             InitializeComponent();
         }
 
-        public UserControlFullCompetitionInformation(Competition сompetition)
+        public UserControlFullCompetitionInformation(User user, Competition сompetition)
         {
             InitializeComponent();
-            Update(сompetition);
+            Update(user, сompetition);
         }
 
-        public void Update(Competition competition)
+        public void Update(User user, Competition competition)
         {
+            currentUser = user;
+
             if (skillsComboBox != null)
             {
                 while (skillsComboBox.Count > 1)
@@ -41,6 +45,7 @@ namespace WorldSkills_WinApp
             }
 
             currentCompetition = competition;
+            currentUser = user;
 
             comboBoxSkills.Items.AddRange(DBWorkers.SkillsController.GetTitles());
 
@@ -114,6 +119,24 @@ namespace WorldSkills_WinApp
             }
 
             buttonAddSkill.Location = new Point(buttonAddSkill.Location.X, skillsComboBox.Last().Location.Y + skillsComboBox.Last().Height + 2);
+        }
+
+        private void UserControlFullCompetitionInformation_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            if (currentCompetition != null)
+                OpenNewForm();
+        }
+
+        private void OpenNewForm()
+        {
+            // TODO возможно доделать выбор формы для разных степеней доступа
+
+            Program.OpenForm(new FormManageCompetition(currentUser, currentCompetition));
         }
     }
 }

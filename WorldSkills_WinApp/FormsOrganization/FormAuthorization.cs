@@ -24,7 +24,7 @@ namespace WorldSkills_WinApp
 
             DBEntities.User user = DBWorkers.UsersController.Get(login, password);
 
-            if (user.IsNull())
+            if (user == null)
             {
                 MessageBox.Show("Неправильный логин или пароль");
                 return;

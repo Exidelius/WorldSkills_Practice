@@ -75,6 +75,7 @@
             this.buttonEdit.TabIndex = 1;
             this.buttonEdit.Text = "Изменить";
             this.buttonEdit.UseVisualStyleBackColor = false;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // textBoxTitle
             // 
@@ -219,6 +220,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.Controls.Add(this.buttonAddSkill);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.numericUpDownParticipantsCount);
@@ -239,6 +241,7 @@
             this.Controls.Add(this.buttonAdd);
             this.Name = "UserControlFullCompetitionInformation";
             this.Size = new System.Drawing.Size(889, 401);
+            this.Load += new System.EventHandler(this.UserControlFullCompetitionInformation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownExpertsCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownParticipantsCount)).EndInit();

@@ -51,3 +51,8 @@ C:\VS Projects\WorldSkills_Practice\WorldSkills_WinApp\obj\Debug\WorldSkills_Win
 C:\VS Projects\WorldSkills_Practice\WorldSkills_WinApp\bin\Debug\MySql.Data.dll
 C:\VS Projects\WorldSkills_Practice\WorldSkills_WinApp\obj\Debug\WorldSkills_WinApp.UserControlCompetitionInformation.resources
 C:\VS Projects\WorldSkills_Practice\WorldSkills_WinApp\obj\Debug\WorldSkills_WinApp.UserControlFullCompetitionInformation.resources
+C:\VS Projects\WorldSkills_Practice\WorldSkills_WinApp\obj\Debug\WorldSkills_WinApp.UserControlManageExperts.resources
+C:\VS Projects\WorldSkills_Practice\WorldSkills_WinApp\obj\Debug\WorldSkills_WinApp.UserControlViewExpert.resources
+C:\VS Projects\WorldSkills_Practice\WorldSkills_WinApp\obj\Debug\WorldSkills_WinApp.UIScripts.UserControlManager.resources
+C:\VS Projects\WorldSkills_Practice\WorldSkills_WinApp\obj\Debug\WorldSkills_WinApp.FormManageCompetition.resources
+C:\VS Projects\WorldSkills_Practice\WorldSkills_WinApp\obj\Debug\WorldSkills_WinApp.UserControls.UserControlViewParticipants.resources

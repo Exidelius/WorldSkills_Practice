@@ -60,40 +60,67 @@
     <Compile Include="DBEntities\Competition.cs" />
     <Compile Include="DBEntities\User.cs" />
     <Compile Include="DBWorkers\DBController.cs" />
-    <Compile Include="FormAuthorization.cs">
+    <Compile Include="FormsOrganization\FormManageCompetition.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAuthorization.Designer.cs">
+    <Compile Include="FormsOrganization\FormManageCompetition.Designer.cs">
+      <DependentUpon>FormManageCompetition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsOrganization\FormAuthorization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsOrganization\FormAuthorization.Designer.cs">
       <DependentUpon>FormAuthorization.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormOrganizationMenu.cs">
+    <Compile Include="FormsOrganization\FormOrganizationMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormOrganizationMenu.Designer.cs">
+    <Compile Include="FormsOrganization\FormOrganizationMenu.Designer.cs">
       <DependentUpon>FormOrganizationMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="IUserControl.cs" />
-    <Compile Include="UserControlManager.cs">
+    <Compile Include="UIScripts\IUserControl.cs" />
+    <Compile Include="UserControls\UserControlManageExperts.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UserControlManageExperts.Designer.cs">
+      <DependentUpon>UserControlManageExperts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIScripts\UserControlManager.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserControlCompetitionInformation.cs">
+    <Compile Include="UserControls\UserControlCompetitionInformation.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControlCompetitionInformation.Designer.cs">
+    <Compile Include="UserControls\UserControlCompetitionInformation.Designer.cs">
       <DependentUpon>UserControlCompetitionInformation.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControlFullCompetitionInformation.cs">
+    <Compile Include="UserControls\UserControlFullCompetitionInformation.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControlFullCompetitionInformation.Designer.cs">
+    <Compile Include="UserControls\UserControlFullCompetitionInformation.Designer.cs">
       <DependentUpon>UserControlFullCompetitionInformation.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FormAuthorization.resx">
+    <Compile Include="UserControls\UserControlViewExpert.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UserControlViewExpert.Designer.cs">
+      <DependentUpon>UserControlViewExpert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControlViewParticipants.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UserControlViewParticipants.Designer.cs">
+      <DependentUpon>UserControlViewParticipants.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FormsOrganization\FormAuthorization.resx">
       <DependentUpon>FormAuthorization.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormOrganizationMenu.resx">
+    <EmbeddedResource Include="FormsOrganization\FormManageCompetition.resx">
+      <DependentUpon>FormManageCompetition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsOrganization\FormOrganizationMenu.resx">
       <DependentUpon>FormOrganizationMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -106,11 +133,23 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UserControlCompetitionInformation.resx">
+    <EmbeddedResource Include="UserControls\UserControlManageExperts.resx">
+      <DependentUpon>UserControlManageExperts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UserControlCompetitionInformation.resx">
       <DependentUpon>UserControlCompetitionInformation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControlFullCompetitionInformation.resx">
+    <EmbeddedResource Include="UserControls\UserControlFullCompetitionInformation.resx">
       <DependentUpon>UserControlFullCompetitionInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIScripts\UserControlManager.resx">
+      <DependentUpon>UserControlManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UserControlViewExpert.resx">
+      <DependentUpon>UserControlViewExpert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UserControlViewParticipants.resx">
+      <DependentUpon>UserControlViewParticipants.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

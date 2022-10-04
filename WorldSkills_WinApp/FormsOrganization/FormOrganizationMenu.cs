@@ -2,6 +2,7 @@
 using WorldSkills_WinApp.DBEntities;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using WorldSkills_WinApp.UIScripts;
 
 namespace WorldSkills_WinApp
 {
@@ -10,7 +11,7 @@ namespace WorldSkills_WinApp
         private User currentUser;
         private Competition currentCompetition;
 
-        UserControlManager userControl;
+        private UserControlManager userControl;
 
         private Dictionary<string, int> competitions;
 
@@ -25,13 +26,30 @@ namespace WorldSkills_WinApp
             currentUser = user;
         }
 
+        public FormOrganizationMenu(User user, Competition competition)
+        {
+            InitializeComponent();
+            currentUser = user;
+            currentCompetition = competition;
+
+            //comboBoxCompetitions.SelectedIndex = comboBoxCompetitions.Items.IndexOf(currentCompetition.Title);
+            //ChangeControl(new UserControlFullCompetitionInformation(currentUser, currentCompetition));
+            ////Console.WriteLine("");
+        }
+
         private void FormOrganizationMenu_Load(object sender, EventArgs e)
         {
-            labelGreetings.Text = String.Concat(ChooseGreetings(), currentUser.GetFIO());
+            labelGreetings.Text = string.Concat(ChooseGreetings(), currentUser.FIO);
 
             competitions = GetCompetitionsNames();
 
             UpdateCompetitions();
+            //Console.WriteLine("тутбыл");
+            if (currentCompetition != null)
+            {
+                comboBoxCompetitions.SelectedIndex = comboBoxCompetitions.Items.IndexOf(currentCompetition.Title);
+                ChangeControl(new UserControlFullCompetitionInformation(currentUser,currentCompetition));
+            }
         }
 
         private Dictionary<string, int> GetCompetitionsNames()
@@ -71,19 +89,15 @@ namespace WorldSkills_WinApp
         {
             currentCompetition = DBWorkers.CompetitionsController.Get(competitions[(string)comboBoxCompetitions.SelectedItem]);
 
-            // TODO Попытаться сделать апдейт. Абстрактный класс работает, но компоненты не хотят открывать с ним дизайнер.
-
-
             if (userControl != null)
-                ((IUserControl)userControl).Update(currentCompetition);
+                ((IUserControl)userControl).Update(currentUser, currentCompetition);
         }
 
         private void buttonCompetition_Click(object sender, EventArgs e)
         {
             if (comboBoxCompetitions.SelectedIndex == -1)
                 return;
-
-            ChangeControl(new UserControlCompetitionInformation(currentCompetition));
+            ChangeControl(new UserControlCompetitionInformation(currentUser,currentCompetition));
         }
 
         private void ChangeControl(UserControlManager newUserControl)
@@ -104,7 +118,7 @@ namespace WorldSkills_WinApp
                 return;
             }
 
-            ChangeControl(new UserControlFullCompetitionInformation(currentCompetition));
+            ChangeControl(new UserControlFullCompetitionInformation(currentUser,currentCompetition));
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
@@ -117,6 +131,13 @@ namespace WorldSkills_WinApp
             // TODO возможно доделать выбор формы для разных степеней доступа
 
             Program.OpenForm(new FormAuthorization());
+        }
+
+        private void buttonExpersManagement_Click(object sender, EventArgs e)
+        {
+            if (comboBoxCompetitions.SelectedIndex == -1)
+                return;
+            ChangeControl(new UserControlManageExperts(currentUser,currentCompetition,DBWorkers.RolesController.RoleToSelect.Experts));
         }
     }
 }

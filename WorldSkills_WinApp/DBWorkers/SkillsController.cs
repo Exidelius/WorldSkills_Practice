@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms.VisualStyles;
 using WorldSkills_WinApp.DBEntities;
 
 namespace WorldSkills_WinApp.DBWorkers
@@ -46,6 +42,21 @@ title = '{title}';";
             return result;
         }
 
+        public static int GetId(string title)
+        {
+            string command = $@"
+SELECT `id` 
+FROM `skill`
+WHERE 
+`skill`.`title` = '{title}';";
+
+            DataTable tableSkills = DBController.GetFromDB(command);
+            if (tableSkills == null)
+                return -1;
+
+            return Convert.ToInt32(tableSkills.Rows[0][0].ToString());
+        }
+
         public static string[] GetTitles()
         {
             string command = $@"SELECT title FROM `skill`;";
@@ -53,7 +64,7 @@ title = '{title}';";
             DataTable tableSkills = DBController.GetFromDB(command);
 
             if (tableSkills == null)
-                return null;
+                return new string[0];
 
             string[] result = new string[tableSkills.Rows.Count];
             for (int i = 0; i < tableSkills.Rows.Count; i++)
@@ -62,6 +73,22 @@ title = '{title}';";
             }
 
             return result;
+        }
+
+        public static string GetTitle(int skillId)
+        {
+            string command = $@"
+SELECT `title` 
+FROM `skill`
+WHERE
+`id` = '{skillId}';";
+
+            DataTable tableSkills = DBController.GetFromDB(command);
+
+            if (tableSkills == null)
+                return null;
+
+            return tableSkills.Rows[0][0].ToString();
         }
     }
 }

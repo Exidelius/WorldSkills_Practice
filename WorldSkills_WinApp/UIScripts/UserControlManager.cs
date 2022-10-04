@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace WorldSkills_WinApp
+namespace WorldSkills_WinApp.UIScripts
 {
     public class UserControlManager: UserControl
     {

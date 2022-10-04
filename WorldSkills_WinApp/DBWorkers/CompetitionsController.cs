@@ -66,7 +66,5 @@ DATEDIFF('{DateTime.Now.ToString("yyyy-MM-dd")}', `competition`.`date_start`) <=
 
             return result;
         }
-
-
     }
 }
