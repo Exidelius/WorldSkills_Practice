@@ -8,7 +8,7 @@ namespace WorldSkills_ClientApp
 {
     public partial class FormAuthorization : Form
     {
-        int count = 0;
+        private int count = 0;
 
         public FormAuthorization()
         {
@@ -23,15 +23,14 @@ namespace WorldSkills_ClientApp
 
             if (currentUser == null)
             {
-                MessageBox.Show("Неправильный код");
-                count++;
-                return;
-            }
+                if (++count == 3)
+                {
+                    MessageBox.Show("Превышено максимальное количество попыток для входа");
+                    Application.Exit();
+                }
 
-            if (count == 3)
-            {
-                MessageBox.Show("Превышено максимальное количество попыток для входа");
-                Application.Exit();
+                MessageBox.Show("Неправильный код");
+                return;
             }
 
             OpenNewForm(currentUser);

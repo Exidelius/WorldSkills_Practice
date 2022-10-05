@@ -21,3 +21,5 @@ C:\VS Projects\WorldSkills_Practice\WorldSkills_ClientApp\bin\Debug\K4os.Hash.xx
 C:\VS Projects\WorldSkills_Practice\WorldSkills_ClientApp\bin\Debug\MySql.Data.xml
 C:\VS Projects\WorldSkills_Practice\WorldSkills_ClientApp\obj\Debug\WorldSkills_ClientApp.exe.config
 C:\VS Projects\WorldSkills_Practice\WorldSkills_ClientApp\obj\Debug\WorldSkills_ClientApp.csproj.CopyComplete
+C:\VS Projects\WorldSkills_Practice\WorldSkills_ClientApp\obj\Debug\WorldSkills_ClientApp.Forms.FormParticipantMenu.resources
+C:\VS Projects\WorldSkills_Practice\WorldSkills_ClientApp\obj\Debug\WorldSkills_ClientApp.Forms.FormParticipants.resources

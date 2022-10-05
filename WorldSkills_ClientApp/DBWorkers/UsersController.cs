@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 using WorldSkills_ClientApp.DBEntities;
 
 namespace WorldSkills_ClientApp.DBWorkers
@@ -30,6 +31,29 @@ WHERE
             if (tableUser == null)
                 return null;
             return new User(tableUser.Rows[0]);
+        }
+
+        public static List<User> Get(User user)
+        {
+            string command = $@"
+SELECT 
+{SELECT_ALL}
+FROM `users` 
+WHERE 
+`users`.`competition` = '{user.Competition}';";
+
+            DataTable tableUser = DBController.GetFromDB(command);
+            if (tableUser == null)
+                return new List<User>();
+
+            List<User> result = new List<User>();
+
+            for (int i = 0; i < tableUser.Rows.Count; i++)
+            {
+                result.Add(new User(tableUser.Rows[i]));
+            }
+
+            return result;
         }
     }
 }
