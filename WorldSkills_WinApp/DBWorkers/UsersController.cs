@@ -117,7 +117,21 @@ AND
             return Convert.ToInt32(tableUser.Rows[0][0]);
         }
 
+        public static string GetPIN(int userId)
+        {
+            string command = $@"
+SELECT 
+`users`.`PIN`
+FROM `users` 
+WHERE 
+`users`.`id` = '{userId}';";
 
+            DataTable tableUser = DBController.GetFromDB(command);
+            if (tableUser == null)
+                return null;
+
+            return tableUser.Rows[0][0].ToString();
+        }
 
         public static string[] GetExpertsNames(int competitionIndex)
         {

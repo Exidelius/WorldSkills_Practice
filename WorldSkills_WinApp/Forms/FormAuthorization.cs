@@ -48,6 +48,12 @@ namespace WorldSkills_WinApp
                 return;
             }
 
+            if (user.Competition == 0)
+            {
+                MessageBox.Show("Нет ближайших чемпионатов.");
+                return;
+            }
+
             Program.OpenForm(new FormExpertMenu(user));
         }
 

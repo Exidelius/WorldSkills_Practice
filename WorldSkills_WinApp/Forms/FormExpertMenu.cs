@@ -39,6 +39,8 @@ namespace WorldSkills_WinApp.Forms
         {
             labelGreetings.Text = string.Concat(ChooseGreetings(), currentUser.FIO);
             labelCompetition.Text = $"{currentCompetition.Title}\nКомпетенция: {SkillsController.GetTitle(currentUser.Skill)}";
+
+            textBoxPin.Text = UsersController.GetPIN(currentUser.Id);
         }
 
         private void buttonParticipants_Click(object sender, EventArgs e)
