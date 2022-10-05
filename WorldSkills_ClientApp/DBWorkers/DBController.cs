@@ -1,7 +1,12 @@
-﻿using MySql.Data.MySqlClient;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
-namespace WorldSkills_WinApp.DBWorkers
+namespace WorldSkills_ClientApp.DBWorkers
 {
     public static class DBController
     {
@@ -38,19 +43,6 @@ namespace WorldSkills_WinApp.DBWorkers
         public static MySqlConnection GetConnection()
         {
             return Connection;
-        }
-
-        public static void UpdateDB(string _command)
-        {
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-
-            MySqlCommand command = new MySqlCommand(_command);
-
-            OpenConnection();
-            adapter.SelectCommand = command;
-            command.Connection = GetConnection();
-            command.ExecuteNonQuery();
-            CloseConnection();
         }
 
         public static DataTable GetFromDB(string _command)

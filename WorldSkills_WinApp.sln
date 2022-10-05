@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldSkills_WinApp", "WorldSkills_WinApp\WorldSkills_WinApp.csproj", "{AE4A2B9A-0A9E-401E-A71C-CA647DE5280B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldSkills_ClientApp", "WorldSkills_ClientApp\WorldSkills_ClientApp.csproj", "{114B17C8-AD83-4048-A824-E35FEF257EBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{AE4A2B9A-0A9E-401E-A71C-CA647DE5280B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE4A2B9A-0A9E-401E-A71C-CA647DE5280B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE4A2B9A-0A9E-401E-A71C-CA647DE5280B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{114B17C8-AD83-4048-A824-E35FEF257EBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{114B17C8-AD83-4048-A824-E35FEF257EBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{114B17C8-AD83-4048-A824-E35FEF257EBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{114B17C8-AD83-4048-A824-E35FEF257EBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
