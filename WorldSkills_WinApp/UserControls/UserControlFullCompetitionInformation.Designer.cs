@@ -241,7 +241,6 @@
             this.Controls.Add(this.buttonAdd);
             this.Name = "UserControlFullCompetitionInformation";
             this.Size = new System.Drawing.Size(889, 401);
-            this.Load += new System.EventHandler(this.UserControlFullCompetitionInformation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownExpertsCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownParticipantsCount)).EndInit();

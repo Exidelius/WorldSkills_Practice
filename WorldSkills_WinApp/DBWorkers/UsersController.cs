@@ -19,26 +19,6 @@ namespace WorldSkills_WinApp.DBWorkers
 `users`.`competition`,
 `users`.`is_active`";
 
-        //    Id = id;
-        //    FIO = fIO;
-        //    Gender = gender;
-        //    DateBirthday = dateBirthday;
-        //    Role = role;
-        //    Skill = skill;
-        //    Region = region;
-        //    Place = place;
-        //    Competition = competition;
-
-        //Id = (int) rowUser[0];
-        //FIO = (string) rowUser[1];
-        //Gender = (string) rowUser[2];
-        //DateBirthday = DateTime.ParseExact(rowUser[3].ToString(), "dd.MM.yyyy s:mm:HH", null);
-        //Role = Convert.ToInt32(rowUser[4].ToString());
-        //Skill = Convert.ToInt32(rowUser[5].ToString());
-        //Region = Convert.ToInt32(rowUser[6].ToString());
-        //Place = Convert.ToInt32(rowUser[7].ToString());
-        //Competition = Convert.ToInt32(rowUser[8].ToString());
-
         public static User Get(string login, string password)
         {
             string command = $@"
@@ -46,7 +26,8 @@ SELECT
 {SELECT_ALL}
 FROM `users` 
 WHERE 
-`users`.`PIN` = '{login}' AND 
+`users`.`PIN` = '{login}' 
+AND 
 `users`.`password` = '{password}';";
 
             DataTable tableUser = DBController.GetFromDB(command);
@@ -106,10 +87,9 @@ SELECT
 COUNT(*)
 FROM `users` 
 WHERE 
-`users`.`competition` = '{competitionIndex}'
-AND
-`users`.`id_role` = '1';
-";
+`users`.`competition` = '{competitionIndex}';";
+            //AND
+            //`users`.`id_role` = '1';
 
             DataTable tableUser = DBController.GetFromDB(command);
             if (tableUser == null)
@@ -146,12 +126,7 @@ SELECT
 `users`.`FIO`
 FROM `users` 
 WHERE 
-`users`.`competition` = '{competitionIndex}'
-AND
-`users`.`id_role` > '1'
-AND 
-`users`.`id_role` < '6';
-";
+`users`.`competition` = '{competitionIndex}'{BuildRoles(RolesController.RoleToSelect.Experts)};";
 
             DataTable tableUser = DBController.GetFromDB(command);
             if (tableUser == null)
@@ -182,6 +157,17 @@ AND
             if (tableUser == null)
                 return null;
             return (string)tableUser.Rows[0][0];
+        }
+
+        public static void UpdateActiveStatus(int userId, bool isActive)
+        {
+            string command = $@"
+UPDATE `users`
+SET `users`.`is_active` = '{(isActive ? 1 : 0)}'
+WHERE
+`users`.`id` = '{userId}';";
+
+            DBController.UpdateDB(command);
         }
 
         private static string BuildRoles(RolesController.RoleToSelect role)
@@ -221,7 +207,8 @@ AND
 `users`.`id_role`='{role}'";
         }
 
-        private static string BuildSkillS(int skill) {
+        private static string BuildSkillS(int skill)
+        {
             if (skill == -1)
                 return "";
 

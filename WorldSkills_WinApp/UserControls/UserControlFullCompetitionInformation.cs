@@ -29,7 +29,30 @@ namespace WorldSkills_WinApp
         public void Update(User user, Competition competition)
         {
             currentUser = user;
+            currentCompetition = competition;
 
+            if (currentCompetition == null)
+                return;
+
+            dateTimePickerStart.Value = currentCompetition.DateOfStart;
+            dateTimePickerEnd.Value = currentCompetition.DateOfEnd;
+            textBoxTitle.Text = currentCompetition.Title;
+            numericUpDownExpertsCount.Value = DBWorkers.UsersController.GetExpertsCount(currentCompetition.Id);
+            numericUpDownParticipantsCount.Value = DBWorkers.UsersController.GetParticipantsCount(currentCompetition.Id);
+
+            FillExperts();
+
+            ClearSkills();
+            FillSkills();
+        }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ClearSkills()
+        {
             if (skillsComboBox != null)
             {
                 while (skillsComboBox.Count > 1)
@@ -43,64 +66,55 @@ namespace WorldSkills_WinApp
                 comboBoxSkills.SelectedIndex = -1;
                 comboBoxSkills.Items.Clear();
             }
+        }
 
-            currentCompetition = competition;
-            currentUser = user;
+        private void FillSkills()
+        {
+            string[] competitionSkills = DBWorkers.CompetitionSkillController.Get(currentCompetition.Id);
+            string[] skills = DBWorkers.SkillsController.GetTitles();
 
-            comboBoxSkills.Items.AddRange(DBWorkers.SkillsController.GetTitles());
-
-            if (currentCompetition == null)
+            if (competitionSkills == null)
                 return;
+            
+            comboBoxSkills.Items.AddRange(skills);
+            comboBoxSkills.SelectedItem = competitionSkills[0];
 
-            dateTimePickerStart.Value = currentCompetition.DateOfStart;
-            dateTimePickerEnd.Value = currentCompetition.DateOfEnd;
-            textBoxTitle.Text = currentCompetition.Title;
+            skillsComboBox = new List<ComboBox>(1);
+            skillsComboBox.Add(comboBoxSkills);
 
-            string[] currentCompetitionSkills = DBWorkers.CompetitionSkillController.Get(currentCompetition.Id);
-
-            if (currentCompetitionSkills != null)
+            for (int i = 1; i < competitionSkills.Length; i++)
             {
-                comboBoxSkills.SelectedIndex = comboBoxSkills.Items.IndexOf(currentCompetitionSkills[0]);
-
-                skillsComboBox = new List<ComboBox>(1);
-                skillsComboBox.Add(comboBoxSkills);
-
-                for (int i = 1; i < currentCompetitionSkills.Length; i++)
-                {
-                    skillsComboBox.Add(CreateNewComboBoxSkills(skillsComboBox.Last(), currentCompetitionSkills[i]));
-                }
-
-                buttonAddSkill.Location = new Point(buttonAddSkill.Location.X, skillsComboBox.Last().Location.Y + skillsComboBox.Last().Height + 2);
+                skillsComboBox.Add(CreateNewComboBoxSkills(skillsComboBox.Last(), skills, competitionSkills[i]));
+                Console.WriteLine(competitionSkills[i]);
             }
 
+            buttonAddSkill.Location = new Point(buttonAddSkill.Location.X, skillsComboBox.Last().Location.Y + skillsComboBox.Last().Height + 2);
+        }
+
+        private void FillExperts()
+        {
             comboBoxExperts.Items.AddRange(DBWorkers.UsersController.GetExpertsNames(currentCompetition.Id));
+
             if (comboBoxExperts.Items.Count > 0)
             {
                 comboBoxExperts.SelectedIndex = comboBoxExperts.Items.IndexOf(DBWorkers.UsersController.GetMainExpertName(currentCompetition.Id));
             }
-
-            numericUpDownExpertsCount.Value = DBWorkers.UsersController.GetExpertsCount(currentCompetition.Id);
-            numericUpDownParticipantsCount.Value = DBWorkers.UsersController.GetParticipantsCount(currentCompetition.Id);
         }
 
-        private void buttonAdd_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private ComboBox CreateNewComboBoxSkills(ComboBox previous, string skillTitle = "")
+        private ComboBox CreateNewComboBoxSkills(ComboBox previous, string[] skillTitles, string currentTitle = "")
         {
             ComboBox result = new ComboBox();
             result.Show();
             result.Parent = previous.Parent;
             result.Location = new Point(previous.Location.X, previous.Location.Y + previous.Height + 5);
 
-            string[] items = previous.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
+            //string[] items = previous.Items.Cast<Object>().Select(item => item.ToString()).ToArray();
 
-            result.Items.AddRange(items);
+            result.Items.AddRange(skillTitles);
+            //result.Items.AddRange(items);
 
-            if (skillTitle != "")
-                result.SelectedIndex = result.Items.IndexOf(skillTitle);
+            if (currentTitle != "")
+                result.SelectedIndex = result.Items.IndexOf(currentTitle);
 
             return result;
         }
@@ -115,15 +129,10 @@ namespace WorldSkills_WinApp
 
             if (skillsComboBox[skillsComboBox.Count - 1].SelectedIndex != -1)
             {
-                skillsComboBox.Add(CreateNewComboBoxSkills(skillsComboBox.Last()));
+                skillsComboBox.Add(CreateNewComboBoxSkills(skillsComboBox.Last(), DBWorkers.SkillsController.GetTitles()));
             }
 
             buttonAddSkill.Location = new Point(buttonAddSkill.Location.X, skillsComboBox.Last().Location.Y + skillsComboBox.Last().Height + 2);
-        }
-
-        private void UserControlFullCompetitionInformation_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void buttonEdit_Click(object sender, EventArgs e)

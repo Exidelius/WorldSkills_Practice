@@ -30,18 +30,18 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridViewParticipants = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Skill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Role = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Activation = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.comboBoxRole = new System.Windows.Forms.ComboBox();
             this.comboBoxSkill = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBoxIsUnaccepted = new System.Windows.Forms.CheckBox();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Skill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Role = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Activation = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewParticipants)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -88,58 +88,7 @@
             this.dataGridViewParticipants.RowTemplate.Height = 24;
             this.dataGridViewParticipants.Size = new System.Drawing.Size(821, 424);
             this.dataGridViewParticipants.TabIndex = 0;
-            // 
-            // Id
-            // 
-            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Id.HeaderText = "Id";
-            this.Id.MinimumWidth = 6;
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Width = 47;
-            // 
-            // FIO
-            // 
-            this.FIO.HeaderText = "ФИО";
-            this.FIO.MinimumWidth = 6;
-            this.FIO.Name = "FIO";
-            this.FIO.ReadOnly = true;
-            // 
-            // Skill
-            // 
-            this.Skill.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Skill.HeaderText = "Компетенция";
-            this.Skill.MinimumWidth = 6;
-            this.Skill.Name = "Skill";
-            this.Skill.ReadOnly = true;
-            this.Skill.Width = 123;
-            // 
-            // Role
-            // 
-            this.Role.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Role.HeaderText = "Роль";
-            this.Role.MinimumWidth = 6;
-            this.Role.Name = "Role";
-            this.Role.ReadOnly = true;
-            this.Role.Width = 68;
-            // 
-            // isActive
-            // 
-            this.isActive.HeaderText = "Статус согласования";
-            this.isActive.MinimumWidth = 6;
-            this.isActive.Name = "isActive";
-            this.isActive.ReadOnly = true;
-            // 
-            // Activation
-            // 
-            this.Activation.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Activation.HeaderText = "Согласование";
-            this.Activation.MinimumWidth = 6;
-            this.Activation.Name = "Activation";
-            this.Activation.ReadOnly = true;
-            this.Activation.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Activation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Activation.Width = 130;
+            this.dataGridViewParticipants.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewParticipants_CellContentClick);
             // 
             // tableLayoutPanel2
             // 
@@ -216,6 +165,60 @@
             this.checkBoxIsUnaccepted.Text = "Показать только неподтверждённых";
             this.checkBoxIsUnaccepted.UseVisualStyleBackColor = true;
             this.checkBoxIsUnaccepted.CheckedChanged += new System.EventHandler(this.checkBoxIsUnaccepted_CheckedChanged);
+            // 
+            // Id
+            // 
+            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Id.HeaderText = "Id";
+            this.Id.MinimumWidth = 6;
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Width = 47;
+            // 
+            // FIO
+            // 
+            this.FIO.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.FIO.HeaderText = "ФИО";
+            this.FIO.MinimumWidth = 6;
+            this.FIO.Name = "FIO";
+            this.FIO.ReadOnly = true;
+            this.FIO.Width = 67;
+            // 
+            // Skill
+            // 
+            this.Skill.HeaderText = "Компетенция";
+            this.Skill.MinimumWidth = 6;
+            this.Skill.Name = "Skill";
+            this.Skill.ReadOnly = true;
+            // 
+            // Role
+            // 
+            this.Role.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Role.HeaderText = "Роль";
+            this.Role.MinimumWidth = 6;
+            this.Role.Name = "Role";
+            this.Role.ReadOnly = true;
+            this.Role.Width = 68;
+            // 
+            // isActive
+            // 
+            this.isActive.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.isActive.HeaderText = "Статус согласования";
+            this.isActive.MinimumWidth = 6;
+            this.isActive.Name = "isActive";
+            this.isActive.ReadOnly = true;
+            this.isActive.Width = 176;
+            // 
+            // Activation
+            // 
+            this.Activation.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Activation.HeaderText = "Согласование";
+            this.Activation.MinimumWidth = 6;
+            this.Activation.Name = "Activation";
+            this.Activation.ReadOnly = true;
+            this.Activation.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Activation.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Activation.Width = 130;
             // 
             // UserControlViewParticipants
             // 

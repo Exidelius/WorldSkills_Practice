@@ -56,6 +56,7 @@ namespace WorldSkills_WinApp.UserControls
             for (int i = 0; i < users.Count; i++)
             {
                 AddRow(GetDataGridUserParams(users[i]));
+
             }
         }
 
@@ -65,7 +66,7 @@ namespace WorldSkills_WinApp.UserControls
             string userFIO = user.FIO.ToString();
             string userSkill = SkillsController.GetTitle(user.Skill);
             string userRole = RolesController.GetTitle(user.Role);
-            string userIsAccepted = user.IsActive == true ? "Согласован" : "Ожидает согласования";
+            string userIsAccepted = user.IsActive ? "Согласован" : "Ожидает согласования";
 
             return new Tuple<string, string, string, string, string>(userID, userFIO, userSkill, userRole, userIsAccepted);
         }
@@ -73,6 +74,14 @@ namespace WorldSkills_WinApp.UserControls
         private void AddRow(Tuple<string, string, string, string, string> userParams)
         {
             dataGridViewParticipants.Rows.Add(userParams.Item1, userParams.Item2, userParams.Item3, userParams.Item4, userParams.Item5, "Согласовать");
+        }
+
+        private void BlockButton(int row_index)
+        {
+            if (dataGridViewParticipants.Rows[row_index].Cells[4].Value == "Согласован")
+            {
+                //dataGridViewParticipants.Rows[row_index].Cells[5].Cont
+            }
         }
 
         private void comboBoxSkill_SelectedIndexChanged(object sender, EventArgs e)
@@ -87,6 +96,35 @@ namespace WorldSkills_WinApp.UserControls
 
         private void checkBoxIsUnaccepted_CheckedChanged(object sender, EventArgs e)
         {
+            RetrieveData();
+        }
+
+        private void dataGridViewParticipants_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex != 5)
+                return;
+
+            int userId = Convert.ToInt32((dataGridViewParticipants.Rows[e.RowIndex].Cells[0].Value));
+            bool newStatus = true;
+
+            if (dataGridViewParticipants.Rows[e.RowIndex].Cells[4].Value.ToString() == "Согласован")
+            {
+                DialogResult result = MessageBox.Show("Данный участник уже согласован. Изменить статус согласования?", "Изменение статуса согласования..", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.No)
+                    return;
+
+                newStatus = false;
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("Изменить статус согласования?", "Изменение статуса согласования..", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.No)
+                    return;
+            }
+
+            UsersController.UpdateActiveStatus(userId, newStatus);
             RetrieveData();
         }
     }

@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Relational;
 using System.Data;
 
 namespace WorldSkills_WinApp.DBWorkers
@@ -38,6 +39,19 @@ namespace WorldSkills_WinApp.DBWorkers
         public static MySqlConnection GetConnection()
         {
             return Connection;
+        }
+
+        public static void UpdateDB(string _command)
+        {
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+
+            MySqlCommand command = new MySqlCommand(_command);
+
+            OpenConnection();
+            adapter.SelectCommand = command;
+            command.Connection = GetConnection();
+            command.ExecuteNonQuery();
+            CloseConnection();
         }
 
         public static DataTable GetFromDB(string _command)
