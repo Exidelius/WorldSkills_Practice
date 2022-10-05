@@ -53,9 +53,7 @@ namespace WorldSkills_WinApp
 
         private void OpenNewForm()
         {
-            //TODO организация доступа
-            FormOrganizationMenu FOM = new FormOrganizationMenu(currentUser, currentCompetition);
-            Program.OpenForm(FOM);
+            Program.OpenForm(new FormOrganizationMenu(currentUser, currentCompetition));
         }
 
         private void buttonMainExperts_Click(object sender, EventArgs e)

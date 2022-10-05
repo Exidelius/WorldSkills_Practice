@@ -56,3 +56,4 @@ C:\VS Projects\WorldSkills_Practice\WorldSkills_WinApp\obj\Debug\WorldSkills_Win
 C:\VS Projects\WorldSkills_Practice\WorldSkills_WinApp\obj\Debug\WorldSkills_WinApp.UIScripts.UserControlManager.resources
 C:\VS Projects\WorldSkills_Practice\WorldSkills_WinApp\obj\Debug\WorldSkills_WinApp.FormManageCompetition.resources
 C:\VS Projects\WorldSkills_Practice\WorldSkills_WinApp\obj\Debug\WorldSkills_WinApp.UserControls.UserControlViewParticipants.resources
+C:\VS Projects\WorldSkills_Practice\WorldSkills_WinApp\obj\Debug\WorldSkills_WinApp.Forms.FormExpertMenu.resources

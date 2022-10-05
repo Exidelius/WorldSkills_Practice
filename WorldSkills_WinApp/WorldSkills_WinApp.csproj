@@ -60,22 +60,28 @@
     <Compile Include="DBEntities\Competition.cs" />
     <Compile Include="DBEntities\User.cs" />
     <Compile Include="DBWorkers\DBController.cs" />
-    <Compile Include="FormsOrganization\FormManageCompetition.cs">
+    <Compile Include="Forms\FormExpertMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormsOrganization\FormManageCompetition.Designer.cs">
+    <Compile Include="Forms\FormExpertMenu.Designer.cs">
+      <DependentUpon>FormExpertMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormManageCompetition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormManageCompetition.Designer.cs">
       <DependentUpon>FormManageCompetition.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsOrganization\FormAuthorization.cs">
+    <Compile Include="Forms\FormAuthorization.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormsOrganization\FormAuthorization.Designer.cs">
+    <Compile Include="Forms\FormAuthorization.Designer.cs">
       <DependentUpon>FormAuthorization.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsOrganization\FormOrganizationMenu.cs">
+    <Compile Include="Forms\FormOrganizationMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormsOrganization\FormOrganizationMenu.Designer.cs">
+    <Compile Include="Forms\FormOrganizationMenu.Designer.cs">
       <DependentUpon>FormOrganizationMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="UIScripts\IUserControl.cs" />
@@ -114,13 +120,16 @@
     <Compile Include="UserControls\UserControlViewParticipants.Designer.cs">
       <DependentUpon>UserControlViewParticipants.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FormsOrganization\FormAuthorization.resx">
+    <EmbeddedResource Include="Forms\FormAuthorization.resx">
       <DependentUpon>FormAuthorization.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormsOrganization\FormManageCompetition.resx">
+    <EmbeddedResource Include="Forms\FormExpertMenu.resx">
+      <DependentUpon>FormExpertMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormManageCompetition.resx">
       <DependentUpon>FormManageCompetition.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormsOrganization\FormOrganizationMenu.resx">
+    <EmbeddedResource Include="Forms\FormOrganizationMenu.resx">
       <DependentUpon>FormOrganizationMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

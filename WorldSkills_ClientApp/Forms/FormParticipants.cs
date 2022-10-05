@@ -50,7 +50,8 @@ namespace WorldSkills_ClientApp.Forms
         {
             OpenNewForm();
         }
-
+        
+        // TODO ВЫНЕСТИ НОВУЮ ФОРМУ В НАСЛЕДОВАНИЕ
         private void OpenNewForm()
         {
             // TODO возможно доделать выбор формы для разных степеней доступа
